@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tirunex — Immersive Website
 
-## Getting Started
+A fully animated, scroll-driven website for Tirunex Systems, built with Next.js, three.js and GSAP.
 
-First, run the development server:
+**Live:** https://parama-guru.github.io/Tirunex/
+
+## Stack
+
+| Layer | Package |
+| --- | --- |
+| Framework | Next.js 16.4 (App Router, static export) + React 19.3 |
+| 3D | three.js 0.186, @react-three/fiber 9.8, @react-three/drei 10.7 |
+| Scroll & animation | GSAP 3.15 (ScrollTrigger, SplitText), Lenis 1.3, Motion 14 |
+| Styling / state | Tailwind CSS 4, Zustand 5 |
+
+## Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # static export to out/
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Every push to `main` runs `.github/workflows/deploy.yml`, which builds the static export with `NEXT_PUBLIC_BASE_PATH=/Tirunex` and publishes `out/` to GitHub Pages. `scripts/fix-export.mjs` runs after `next build` and copies the route prefetch files to the flat names the Next 16 client requests.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Design system
 
-## Learn More
+- **Fonts** – Instrument Sans (headings, 600 weight, 88% width), Geist (body), Geist Mono (labels), via `next/font/google`.
+- **Fluid type scale** – Tailwind tokens in `src/app/globals.css`: `text-display`, `text-h1`, `text-h2`, `text-statement`, `text-h3`, `text-lead`, `text-body`, `text-small`, `text-label` (all `clamp()`, 320px → 1920px).
+- **Layout** – `container-site` utility (90rem max + fluid gutter). On large monitors the root font size scales up so type, spacing and the container grow together.
+- **Cards** – `rounded-card` for grid cards and `rounded-panel` for large panels; 3D emblems 80–112px.
+- **Targets** – 320px phones to 3440px ultrawide; tap targets ≥ 44px; no text under 11px; light-theme accents meet WCAG AA.
 
-To learn more about Next.js, take a look at the following resources:
+## How it works
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **One frame loop** – `src/components/layout/Experience.tsx` drives Lenis, ScrollTrigger and both WebGL canvases from the GSAP ticker.
+- **Background scene** – a 15k-particle GLSL field plus the "Tirunex AI" core; each `<Scene scene={…}>` section retargets shape, colour, position and zoom on scroll. Shapes live in `src/lib/shapes.ts`.
+- **Emblems** – `<Emblem>` renders small 3D objects inside cards through drei `View` on one overlay canvas.
+- **Declarative animations** – `src/lib/fx.ts` wires `data-split`, `data-reveal`, `data-highlight`, `data-parallax`, `data-counter`, `data-draw`, `data-tilt` and `data-magnetic`.
+- **Theme** – dark/light toggle with a circular View Transition reveal, saved in `localStorage`.
+- **Accessibility** – `prefers-reduced-motion` disables smooth scroll, reveals, the preloader and custom cursor.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contact form
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+There is no backend: the form validates input and opens the visitor's email client with a pre-filled message to `sales@tirunex.com`.
