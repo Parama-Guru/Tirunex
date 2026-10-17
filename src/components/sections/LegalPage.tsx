@@ -28,7 +28,7 @@ export function LegalPage({
   const all = [...sections, { id: "contact-us", title: "Contact Us", body: null }];
   return (
     <Page>
-      <PageHero crumb={crumb} eyebrow="Legal" title={title} text={text} scene={{ shape, core: 0, x: 2.8, zoom: 9, tint: "indigo" }} />
+      <PageHero compact crumb={crumb} eyebrow="Legal" title={title} text={text} scene={{ shape, core: 0, x: 2.8, zoom: 9, tint: "indigo" }} />
       <Scene scene={{ shape: "cloud", core: 0, x: 0, zoom: 10, tint: "blue" }} className="relative pb-24">
         <Container className="grid gap-12 lg:grid-cols-[240px_1fr]">
           <aside className="hidden lg:block">

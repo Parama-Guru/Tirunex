@@ -67,7 +67,7 @@ export function ContactForm() {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-panel glass-strong p-6 shadow-[var(--shadow)] sm:p-10">
+    <div className="relative overflow-hidden rounded-panel glass-strong p-5 shadow-[var(--shadow)] sm:p-8">
       <AnimatePresence mode="wait">
         {sent ? (
           <motion.div
@@ -93,7 +93,7 @@ export function ContactForm() {
             </button>
           </motion.div>
         ) : (
-          <motion.form key="form" noValidate onSubmit={onSubmit} exit={{ opacity: 0, y: -20 }} className="space-y-5">
+          <motion.form key="form" noValidate onSubmit={onSubmit} exit={{ opacity: 0, y: -20 }} className="space-y-4">
             <fieldset>
               <legend className="mb-3 font-mono text-label uppercase tracking-[0.12em] text-muted">I&apos;m interested in</legend>
               <div className="flex flex-wrap gap-2">
@@ -134,7 +134,7 @@ export function ContactForm() {
                 <textarea
                   id="requirement"
                   name="requirement"
-                  rows={5}
+                  rows={4}
                   placeholder="What would you like to improve, build or scale?"
                   aria-invalid={!!errors.requirement}
                   className={`${fieldCls.replace("placeholder:text-transparent", "placeholder:text-muted/70").replace("pt-6", "pt-8")} resize-none`}

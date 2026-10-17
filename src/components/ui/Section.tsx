@@ -62,6 +62,7 @@ export function PageHero({
   scene,
   aside,
   children,
+  compact = false,
 }: {
   crumb: string;
   eyebrow: string;
@@ -71,9 +72,11 @@ export function PageHero({
   scene: SceneConfig;
   aside?: ReactNode;
   children?: ReactNode;
+  /** Shorter hero for text-light pages (contact, FAQ, legal, about). */
+  compact?: boolean;
 }) {
   return (
-    <Scene scene={scene} className="relative flex min-h-[100svh] flex-col justify-center pb-20 pt-28 sm:pt-32">
+    <Scene scene={scene} className={`relative flex flex-col justify-center pt-28 sm:pt-32 ${compact ? "min-h-[62svh] pb-12" : "min-h-[100svh] pb-20"}`}>
       <div className="container-site grid gap-10 lg:grid-cols-[1.25fr_1fr] lg:items-center">
         <div>
           <nav aria-label="Breadcrumb" data-reveal="fade" data-hero className="mb-5 font-mono text-label uppercase text-muted">
@@ -97,7 +100,7 @@ export function PageHero({
         {aside && <div className="relative hidden lg:block">{aside}</div>}
       </div>
       {children}
-      <ScrollCue />
+      {!compact && <ScrollCue />}
     </Scene>
   );
 }

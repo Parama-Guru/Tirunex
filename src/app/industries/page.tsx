@@ -207,24 +207,24 @@ export default function IndustriesPage() {
                   </div>
                 </div>
                 <dl data-draw-trigger className="relative">
-                  <svg className="absolute bottom-6 left-[11px] top-6 w-px overflow-visible" aria-hidden>
+                  <svg className="absolute bottom-6 left-[11px] top-6 w-px overflow-visible lg:hidden" aria-hidden>
                     <line x1="0" y1="0" x2="0" y2="100%" stroke="var(--line-strong)" strokeWidth="1" />
                   </svg>
-                  <div data-reveal="stagger" className="relative space-y-1.5">
+                  <div data-reveal="stagger" className="relative space-y-1.5 lg:grid lg:grid-cols-2 lg:gap-2.5 lg:space-y-0">
                     {ind.rows.map(([k, v], ri) => (
-                      <div key={k} className="relative pl-8">
+                      <div key={k} className={`relative pl-8 lg:pl-0 ${ri === 1 ? "lg:order-first lg:col-span-2" : ""}`}>
                         <span
-                          className={`absolute left-0 top-3.5 grid h-6 w-6 place-items-center rounded-full border font-mono text-label md:top-4 ${
+                          className={`absolute left-0 top-3.5 grid h-6 w-6 place-items-center rounded-full border font-mono text-label md:top-4 lg:hidden ${
                             ri === 1 ? "border-cyan bg-cyan text-ink" : "border-line-strong bg-bg text-muted"
                           }`}
                         >
                           {ri + 1}
                         </span>
                         <div
-                          className={`border-b py-3 transition-colors md:rounded-card md:border md:px-4 md:py-3 ${ri === 1 ? "border-cyan/40 md:bg-cyan/10" : "border-line md:bg-card"}`}
+                          className={`h-full border-b py-3 transition-colors md:rounded-card md:border md:px-4 md:py-3 ${ri === 1 ? "border-cyan/40 md:bg-cyan/10" : "border-line md:bg-card"}`}
                         >
                           <dt className="font-mono text-label uppercase text-muted">{k}</dt>
-                          <dd className={`mt-1.5 max-w-[60ch] ${ri === 1 ? "font-display text-h3 text-fg" : "text-body text-fg-soft"}`}>{v}</dd>
+                          <dd className={`mt-1.5 max-w-[60ch] ${ri === 1 ? "font-display text-h3 text-fg" : "text-small text-fg-soft lg:text-body"}`}>{v}</dd>
                         </div>
                       </div>
                     ))}

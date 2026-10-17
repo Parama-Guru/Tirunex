@@ -22,7 +22,7 @@ const direct: { label: string; value: string; href: string; icon: IconName; exte
 export default function ContactPage() {
   return (
     <Page>
-      <PageHero
+      <PageHero compact
         crumb="Contact"
         eyebrow="Start a conversation"
         title={

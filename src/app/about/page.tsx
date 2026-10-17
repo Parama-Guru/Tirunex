@@ -25,7 +25,7 @@ const approach = ["Understand", "Design", "Implement", "Integrate", "Automate", 
 export default function AboutPage() {
   return (
     <Page>
-      <PageHero
+      <PageHero compact
         crumb="About"
         eyebrow="Technology + Talent, unified"
         title={

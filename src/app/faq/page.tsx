@@ -29,7 +29,7 @@ const faqs = [
 export default function FAQPage() {
   return (
     <Page>
-      <PageHero
+      <PageHero compact
         crumb="FAQ"
         eyebrow="Clear answers"
         title={
