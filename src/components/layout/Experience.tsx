@@ -23,7 +23,7 @@ export function Experience({ children }: { children: ReactNode }) {
   useEffect(() => {
     const html = document.documentElement;
     html.classList.add("js");
-    useApp.getState().setTheme((html.dataset.theme as Theme) || "dark");
+    useApp.getState().setTheme((html.dataset.theme as Theme) || "light");
 
     const reduced = prefersReducedMotion();
     const lenis = new Lenis({

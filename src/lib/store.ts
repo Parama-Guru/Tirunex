@@ -45,7 +45,7 @@ interface AppState {
 }
 
 export const useApp = create<AppState>((set) => ({
-  theme: "dark",
+  theme: "light",
   setTheme: (theme) => set({ theme }),
   ready: false,
   setReady: (ready) => set({ ready }),
