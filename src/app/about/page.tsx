@@ -84,7 +84,7 @@ export default function AboutPage() {
         <Container>
           <SectionHeading align="center" eyebrow="Our approach" title="Structured progress. Continuous improvement." />
           <div data-draw-trigger className="relative mx-auto mt-12 max-w-3xl sm:mt-16">
-            <svg viewBox="0 0 10 700" preserveAspectRatio="none" className="absolute left-1/2 top-0 h-full w-3 -translate-x-1/2" aria-hidden>
+            <svg viewBox="0 0 10 700" preserveAspectRatio="none" className="absolute left-[22px] top-0 h-full w-3 -translate-x-1/2 sm:left-1/2" aria-hidden>
               <path d="M5 0 V700" stroke="url(#ap-g)" strokeWidth="2" fill="none" data-draw />
               <defs>
                 <linearGradient id="ap-g" x1="0" y1="0" x2="0" y2="1">
@@ -93,16 +93,21 @@ export default function AboutPage() {
                 </linearGradient>
               </defs>
             </svg>
-            <ol className="relative space-y-6 sm:space-y-8">
+            <ol className="relative space-y-5 sm:space-y-8">
               {approach.map((a, i) => (
-                <li key={a} data-reveal={i % 2 ? "right" : "left"} className={`flex items-center gap-3 sm:gap-6 ${i % 2 ? "flex-row-reverse text-right" : ""}`}>
-                  <div className="flex-1">
+                <li
+                  key={a}
+                  data-reveal={i % 2 ? "right" : "left"}
+                  className={`flex min-w-0 items-center gap-4 sm:gap-6 ${i % 2 ? "sm:flex-row-reverse sm:text-right" : ""}`}
+                >
+                  <div className="hidden min-w-0 flex-1 sm:block">
                     <p className="font-display text-h2 font-semibold">{a}</p>
                   </div>
                   <span className="relative z-10 grid h-11 w-11 shrink-0 place-items-center rounded-full glass-strong font-mono text-label text-cyan shadow-[0_0_40px_-8px_rgba(38,198,218,0.8)] sm:h-14 sm:w-14">
                     0{i + 1}
                   </span>
-                  <div className="flex-1" />
+                  <p className="min-w-0 font-display text-h2 font-semibold sm:hidden">{a}</p>
+                  <div className="hidden flex-1 sm:block" />
                 </li>
               ))}
             </ol>
