@@ -35,9 +35,9 @@ export function HorizontalScroll({ children, className = "", intro }: { children
         });
         gsap.utils.toArray<HTMLElement>(el.children).forEach((card) => {
           gsap.from(card, {
-            opacity: 0.25,
-            scale: 0.92,
-            rotateY: -12,
+            opacity: 0.45,
+            scale: 0.96,
+            rotateY: -6,
             transformPerspective: 1200,
             ease: "none",
             scrollTrigger: { trigger: card, containerAnimation: tween, start: "left 100%", end: "left 55%", scrub: true },

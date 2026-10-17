@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { site } from "@/lib/site";
+import { Select } from "@/components/ui/Select";
 
 const interests = ["Business software", "AI integration", "Automation", "Digital transformation", "Technology services", "Workforce support"];
 const industries = ["Retail", "Manufacturing", "Professional Services", "Logistics", "Healthcare", "Financial Services", "Other"];
@@ -10,9 +11,9 @@ const industries = ["Retail", "Manufacturing", "Professional Services", "Logisti
 type Errors = Partial<Record<"name" | "company" | "email" | "preferredContactMethod" | "requirement", string>>;
 
 const fieldCls =
-  "peer w-full rounded-2xl border border-line bg-card px-4 pb-3 pt-6 text-fg outline-none transition-colors placeholder:text-transparent focus:border-cyan focus:bg-card-strong";
+  "peer w-full rounded-2xl border border-line bg-card px-4 pb-3 pt-6 text-body text-fg outline-none transition-colors placeholder:text-transparent hover:border-line-strong focus:border-cyan focus:bg-card-strong aria-[invalid=true]:border-[#ff6b81]/70";
 const labelCls =
-  "pointer-events-none absolute left-4 top-4 origin-left text-sm text-muted transition-all duration-300 peer-focus:top-2 peer-focus:scale-[0.8] peer-focus:text-cyan peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:scale-[0.8]";
+  "pointer-events-none absolute left-4 top-4 origin-left text-body text-muted transition-all duration-300 peer-focus:top-2 peer-focus:scale-[0.75] peer-focus:text-cyan peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:scale-[0.75]";
 
 function Field({ name, label, type = "text", required, error, autoComplete }: { name: string; label: string; type?: string; required?: boolean; error?: string; autoComplete?: string }) {
   return (
@@ -24,7 +25,7 @@ function Field({ name, label, type = "text", required, error, autoComplete }: { 
           {required && " *"}
         </label>
       </div>
-      {error && <p className="mt-1.5 pl-1 text-xs text-[#ff6b81]">{error}</p>}
+      {error && <p className="mt-1.5 pl-1 text-small text-[#ff6b81]">{error}</p>}
     </div>
   );
 }
@@ -87,7 +88,7 @@ export function ContactForm() {
               </a>
               .
             </p>
-            <button type="button" onClick={() => setSent(false)} className="mt-8 rounded-full border border-line-strong px-5 py-2.5 text-sm hover:border-cyan">
+            <button type="button" onClick={() => setSent(false)} className="mt-8 rounded-full border border-line-strong px-5 py-2.5 text-small transition-colors hover:border-cyan">
               Send another enquiry
             </button>
           </motion.div>
@@ -104,7 +105,7 @@ export function ContactForm() {
                       key={v}
                       aria-pressed={on}
                       onClick={() => toggle(v)}
-                      className={`rounded-full border px-4 py-2 text-sm transition-all ${on ? "border-cyan bg-cyan/15 text-fg" : "border-line text-fg-soft hover:border-line-strong"}`}
+                      className={`rounded-full border px-4 py-2 text-small transition-all ${on ? "border-cyan bg-cyan/15 text-fg" : "border-line text-fg-soft hover:border-line-strong"}`}
                     >
                       {on ? "✓ " : "+ "}
                       {v}
@@ -118,30 +119,15 @@ export function ContactForm() {
               <Field name="company" label="Company" required error={errors.company} autoComplete="organization" />
               <Field name="email" label="Email" type="email" required error={errors.email} autoComplete="email" />
               <Field name="phone" label="Contact Number" type="tel" autoComplete="tel" />
-              <div className="relative">
-                <select id="industry" name="industry" defaultValue="" className={`${fieldCls} appearance-none`}>
-                  <option value="">Select industry</option>
-                  {industries.map((i) => (
-                    <option key={i}>{i}</option>
-                  ))}
-                </select>
-                <label htmlFor="industry" className="pointer-events-none absolute left-4 top-2 scale-[0.8] origin-left text-sm text-muted">
-                  Industry
-                </label>
-              </div>
-              <div>
-                <div className="relative">
-                  <select id="preferredContactMethod" name="preferredContactMethod" defaultValue="" aria-invalid={!!errors.preferredContactMethod} className={`${fieldCls} appearance-none`}>
-                    <option value="">Select preference</option>
-                    <option>Email</option>
-                    <option>Phone</option>
-                  </select>
-                  <label htmlFor="preferredContactMethod" className="pointer-events-none absolute left-4 top-2 scale-[0.8] origin-left text-sm text-muted">
-                    Preferred Contact Method *
-                  </label>
-                </div>
-                {errors.preferredContactMethod && <p className="mt-1.5 pl-1 text-xs text-[#ff6b81]">{errors.preferredContactMethod}</p>}
-              </div>
+              <Select name="industry" label="Industry" placeholder="Select industry" options={industries} />
+              <Select
+                name="preferredContactMethod"
+                label="Preferred Contact Method"
+                placeholder="Select preference"
+                options={["Email", "Phone"]}
+                required
+                error={errors.preferredContactMethod}
+              />
             </div>
             <div>
               <div className="relative">
@@ -153,11 +139,11 @@ export function ContactForm() {
                   aria-invalid={!!errors.requirement}
                   className={`${fieldCls.replace("placeholder:text-transparent", "placeholder:text-muted/70").replace("pt-6", "pt-8")} resize-none`}
                 />
-                <label htmlFor="requirement" className="pointer-events-none absolute left-4 top-2 scale-[0.8] origin-left text-sm text-muted">
+                <label htmlFor="requirement" className="pointer-events-none absolute left-4 top-2 text-[0.75rem] text-muted">
                   Requirement *
                 </label>
               </div>
-              {errors.requirement && <p className="mt-1.5 pl-1 text-xs text-[#ff6b81]">{errors.requirement}</p>}
+              {errors.requirement && <p className="mt-1.5 pl-1 text-small text-[#ff6b81]">{errors.requirement}</p>}
             </div>
             <button
               type="submit"

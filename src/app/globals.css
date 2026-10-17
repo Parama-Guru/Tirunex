@@ -156,6 +156,41 @@
     color: #fff;
   }
 
+  html {
+    accent-color: #26c6da;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--fg) 22%, transparent) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--fg) 20%, transparent);
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in srgb, #26c6da 60%, transparent);
+  }
+
+  /* Keep browser autofill inside the design system instead of the default yellow/blue fill. */
+  input:-webkit-autofill,
+  textarea:-webkit-autofill {
+    -webkit-text-fill-color: var(--fg);
+    -webkit-box-shadow: 0 0 0 1000px var(--bg-2) inset;
+    caret-color: var(--fg);
+    transition: background-color 9999s;
+  }
+
   :focus-visible {
     outline: 2px solid #26c6da;
     outline-offset: 3px;

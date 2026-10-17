@@ -191,18 +191,20 @@ export default function Home() {
             <article
               key={p.title}
               data-emblem-host
-              className="relative flex min-h-[clamp(17rem,42vh,24rem)] w-[min(82vw,22rem)] shrink-0 snap-center flex-col justify-between overflow-hidden rounded-panel glass-strong p-6 sm:w-[22rem] lg:w-[clamp(24rem,30vw,32rem)] lg:p-8"
+              className="relative flex w-[min(80vw,20rem)] shrink-0 snap-center flex-col overflow-hidden rounded-panel glass-strong p-6 lg:w-[clamp(19rem,23vw,25rem)] lg:p-7"
             >
-              <div className="pointer-events-none absolute -right-4 -top-8 hidden font-display text-[9rem] font-bold leading-none text-fg/[0.04] md:block">0{i + 1}</div>
+              <div className="pointer-events-none absolute -right-3 -top-6 hidden font-display text-[7rem] font-bold leading-none text-fg/[0.035] md:block">0{i + 1}</div>
               <div className="flex items-center justify-between">
                 <span className="rounded-full border border-cyan/40 bg-cyan/10 px-3 py-1 font-mono text-label text-cyan">0{i + 1} / 04</span>
-                <Emblem variant={p.emblem} tint={p.tint} className="h-20 w-20 lg:h-28 lg:w-28" />
+                <Emblem variant={p.emblem} tint={p.tint} className="-my-3 h-20 w-20 lg:h-24 lg:w-24" />
               </div>
-              <div className="mt-6">
-                <h3 className="text-h2">{p.title}</h3>
-                <div className="mt-5 flex flex-wrap gap-2">
+              <div className="mt-10 lg:mt-14">
+                <h3 className="font-display text-[clamp(1.5rem,1.25rem+0.9vw,2.125rem)] font-semibold leading-[1.08] tracking-[-0.02em] [font-stretch:88%]">{p.title}</h3>
+                <div className="mt-4 flex flex-wrap gap-1.5">
                   {p.tags.map((t) => (
-                    <Chip key={t}>{t}</Chip>
+                    <Chip key={t} className="py-1 text-[0.8125rem]">
+                      {t}
+                    </Chip>
                   ))}
                 </div>
               </div>
