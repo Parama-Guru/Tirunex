@@ -1,26 +1,489 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+:root,
+[data-theme="dark"] {
+  --bg: #040a14;
+  --bg-2: #08162a;
+  --bg-3: #0e2945;
+  --fg: #eaf1ff;
+  --fg-soft: #c3d0e4;
+  --muted: #8193ab;
+  --line: rgba(160, 190, 230, 0.12);
+  --line-strong: rgba(160, 190, 230, 0.22);
+  --card: rgba(13, 30, 54, 0.45);
+  --card-strong: rgba(16, 36, 64, 0.75);
+  --chip: rgba(38, 198, 218, 0.08);
+  --glow: rgba(23, 105, 255, 0.35);
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  --grain-opacity: 0.07;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #f3f6fb;
+  --bg-2: #ffffff;
+  --bg-3: #e6eefa;
+  --fg: #07111f;
+  --fg-soft: #253650;
+  --muted: #5d6e85;
+  --line: rgba(9, 25, 45, 0.1);
+  --line-strong: rgba(9, 25, 45, 0.18);
+  --card: rgba(255, 255, 255, 0.62);
+  --card-strong: rgba(255, 255, 255, 0.9);
+  --chip: rgba(23, 105, 255, 0.07);
+  --glow: rgba(23, 105, 255, 0.18);
+  --shadow: 0 24px 60px rgba(7, 17, 31, 0.1);
+  --grain-opacity: 0.035;
+  color-scheme: light;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-bg-3: var(--bg-3);
+  --color-fg: var(--fg);
+  --color-fg-soft: var(--fg-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-card: var(--card);
+  --color-card-strong: var(--card-strong);
+  --color-chip: var(--chip);
+  --color-ink: #07111f;
+  --color-navy: #09192d;
+  --color-blue: #1769ff;
+  --color-cyan: #26c6da;
+  --color-indigo: #6558ff;
+  --color-green: #35d49a;
+  --color-gold: #c99a1d;
+  --font-sans: var(--font-geist);
+  --font-display: var(--font-instrument);
   --font-mono: var(--font-geist-mono);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* Fluid type scale: linear from 320px to 1920px; root scaling below carries it to large monitors. */
+  --text-display: clamp(2.5rem, 1.8rem + 3.5vw, 6rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.03em;
+  --text-h1: clamp(2.25rem, 1.7rem + 2.75vw, 5rem);
+  --text-h1--line-height: 1.02;
+  --text-h1--letter-spacing: -0.03em;
+  --text-h2: clamp(1.875rem, 1.5rem + 1.875vw, 3.75rem);
+  --text-h2--line-height: 1.05;
+  --text-h2--letter-spacing: -0.025em;
+  --text-statement: clamp(1.375rem, 1.1rem + 1.375vw, 2.75rem);
+  --text-statement--line-height: 1.2;
+  --text-statement--letter-spacing: -0.02em;
+  --text-h3: clamp(1.25rem, 1.15rem + 0.5vw, 1.75rem);
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -0.015em;
+  --text-lead: clamp(1.0625rem, 1.0125rem + 0.25vw, 1.3125rem);
+  --text-lead--line-height: 1.55;
+  --text-body: clamp(0.9375rem, 0.9125rem + 0.125vw, 1.0625rem);
+  --text-body--line-height: 1.6;
+  --text-small: clamp(0.8125rem, 0.8rem + 0.0625vw, 0.875rem);
+  --text-small--line-height: 1.45;
+  --text-label: clamp(0.6875rem, 0.675rem + 0.0625vw, 0.75rem);
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.12em;
+
+  --radius-card: 1.25rem;
+  --radius-panel: 1.75rem;
+  --container-site: 90rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility container-site {
+  width: 100%;
+  max-width: calc(var(--container-site) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+:root {
+  --gutter: clamp(1rem, 4vw, 3rem);
+}
+
+/* Large monitors: scale the whole rem-based system (type, spacing, container) instead of leaving empty space.
+   Height is part of the query so a 3440x1440 ultrawide is treated like 2560x1440, not a 5K panel. */
+@media (min-width: 2200px) and (min-height: 1200px) {
+  html {
+    font-size: 112.5%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Ultrawide (3440x1440) and larger: scale a bit further so content isn't a narrow strip. */
+@media (min-width: 3000px) and (min-height: 1300px) {
+  html {
+    font-size: 125%;
+  }
+}
+
+/* Accent text needs darker shades on the light background to meet WCAG AA. */
+[data-theme="light"] .text-cyan {
+  color: #0e7490;
+}
+
+[data-theme="light"] .text-green {
+  color: #0f7a55;
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100dvh;
+    background: transparent;
+    color: var(--fg);
+    font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: #1769ff;
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid #26c6da;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-instrument), var(--font-geist), sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  h1,
+  h2,
+  .text-display,
+  .text-h1,
+  .text-h2 {
+    font-stretch: 88%;
+  }
+
+  .font-display {
+    font-weight: 600;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* Ambient page backdrop drawn behind the WebGL canvas. */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(60vw 60vw at 85% -10%, rgba(23, 105, 255, 0.22), transparent 60%),
+    radial-gradient(50vw 50vw at -10% 30%, rgba(101, 88, 255, 0.16), transparent 60%),
+    radial-gradient(60vw 50vw at 50% 120%, rgba(38, 198, 218, 0.12), transparent 60%),
+    var(--bg);
+}
+
+[data-theme="light"] .backdrop {
+  background:
+    radial-gradient(60vw 60vw at 85% -10%, rgba(23, 105, 255, 0.12), transparent 60%),
+    radial-gradient(50vw 50vw at -10% 30%, rgba(101, 88, 255, 0.09), transparent 60%),
+    radial-gradient(60vw 50vw at 50% 120%, rgba(38, 198, 218, 0.1), transparent 60%),
+    var(--bg);
+}
+
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 60;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain 1.2s steps(6) infinite;
+}
+
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -3%); }
+  60% { transform: translate(-2%, -1%); }
+  80% { transform: translate(3%, 3%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Typography helpers */
+.text-gradient {
+  background: linear-gradient(100deg, #1769ff 0%, #26c6da 45%, #6558ff 90%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.eyebrow {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #26c6da;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+[data-theme="light"] .eyebrow {
+  color: #1769ff;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.glass {
+  background: var(--card);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.glass-strong {
+  background: var(--card-strong);
+  border: 1px solid var(--line-strong);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+}
+
+/* Card spotlight that follows the pointer (position set by TiltCard). */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(38, 198, 218, 0.7), transparent 45%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%), var(--glow), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.spotlight:hover::before,
+.spotlight:hover::after {
+  opacity: 1;
+}
+
+/* Rolling text used by nav links and buttons. */
+.roll {
+  display: inline-flex;
+  overflow: hidden;
+  position: relative;
+  line-height: 1.25;
+}
+
+.roll > span {
+  display: block;
+  transition: transform 0.55s var(--ease-expo);
+}
+
+.roll > span:last-child {
+  position: absolute;
+  inset: 0;
+  transform: translateY(110%);
+}
+
+.group:hover .roll > span:first-child {
+  transform: translateY(-110%);
+}
+
+.group:hover .roll > span:last-child {
+  transform: translateY(0);
+}
+
+/* SplitText line masks */
+.split-line {
+  overflow: clip;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+@keyframes scrollcue {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes packet {
+  0% { left: 0%; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* Elements revealed by GSAP start hidden only when JS is running. */
+.js [data-reveal],
+.js [data-split] {
+  opacity: 0;
+}
+
+/* Let the header join the root snapshot so the theme reveal covers it too. */
+html.theme-transition [data-vt-header] {
+  view-transition-name: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal],
+  .js [data-split] {
+    opacity: 1 !important;
+  }
+  .grain,
+  .text-gradient {
+    animation: none;
+  }
+}
+
+/* View transitions: page content animates, header and canvases stay anchored. */
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+
+::view-transition-old(site-header) {
+  display: none;
+}
+
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+::view-transition-old(.page) {
+  animation: 380ms var(--ease-quart) both page-out;
+}
+
+::view-transition-new(.page) {
+  animation: 900ms var(--ease-expo) 260ms both page-in;
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.98);
+    filter: blur(8px);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(80px);
+    clip-path: inset(30% 0 0 0 round 40px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 0 0 round 0);
+    filter: none;
+  }
+}
+
+/* Theme switch: circular reveal expanding from the toggle button. */
+html.theme-transition::view-transition-old(root) {
+  animation: none;
+  z-index: 1;
+}
+
+html.theme-transition::view-transition-new(root) {
+  z-index: 2;
+  animation: theme-reveal 900ms var(--ease-quart) both;
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--tx, 100%) var(--ty, 0%));
+  }
+  to {
+    clip-path: circle(var(--tr, 150vmax) at var(--tx, 100%) var(--ty, 0%));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }

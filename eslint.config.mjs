@@ -5,6 +5,15 @@ import nextTs from "eslint-config-next/typescript";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
+  {
+    // React Three Fiber scenes mutate imperative three.js objects (materials, uniforms, geometries)
+    // every frame by design; the React Compiler purity rules do not model that, and the compiler is not enabled.
+    files: ["src/components/three/**/*.tsx"],
+    rules: {
+      "react-hooks/immutability": "off",
+      "react-hooks/purity": "off",
+    },
+  },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
