@@ -100,8 +100,8 @@ export default function Home() {
             </div>
             <div data-reveal="scale" data-hero className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
               <p className="font-mono text-label uppercase tracking-[0.12em] text-cyan">Core Engine</p>
-              <p className="mt-1 font-display text-2xl font-bold tracking-tight text-white drop-shadow-[0_0_20px_rgba(23,105,255,0.9)]">TIRUNEX AI</p>
-              <p className="mt-1 font-mono text-label text-white/80">
+              <p className="mt-1 font-display text-2xl font-bold tracking-tight text-white drop-shadow-[0_0_20px_rgba(23,105,255,0.9)] light:text-ink light:drop-shadow-[0_0_14px_rgba(255,255,255,0.95)]">TIRUNEX AI</p>
+              <p className="mt-1 font-mono text-label text-white/80 light:text-fg-soft">
                 <span data-counter="99.8">0</span>% Precision
               </p>
             </div>

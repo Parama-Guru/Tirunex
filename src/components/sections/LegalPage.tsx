@@ -47,7 +47,7 @@ export function LegalPage({
                   <h2 data-split className="mt-2 text-h2">
                     {s.title}
                   </h2>
-                  <p data-reveal className="mt-4 text-lead text-fg-soft">
+                  <p data-reveal className="mt-4 max-w-[68ch] text-lead text-fg-soft">
                     {s.body}
                   </p>
                 </section>
@@ -59,20 +59,20 @@ export function LegalPage({
                 <h2 data-split className="mt-2 text-h2">
                   Contact Us
                 </h2>
-                <p data-reveal className="mt-4 text-lead text-fg-soft">
+                <p data-reveal className="mt-4 max-w-[68ch] text-lead text-fg-soft">
                   {contactIntro}
                 </p>
                 <div data-reveal className="mt-6 rounded-card glass p-6 text-fg-soft">
                   <p className="font-semibold text-fg">{site.legalName}</p>
                   <p className="mt-3">
                     Email:{" "}
-                    <a href={`mailto:${site.email}`} className="text-cyan hover:underline">
+                    <a href={`mailto:${site.email}`} className="inline-flex min-h-11 items-center text-cyan hover:underline">
                       {site.email}
                     </a>
                   </p>
                   <p>
                     Phone:{" "}
-                    <a href={site.phoneHref} className="text-cyan hover:underline">
+                    <a href={site.phoneHref} className="inline-flex min-h-11 items-center text-cyan hover:underline">
                       {site.phone}
                     </a>
                   </p>

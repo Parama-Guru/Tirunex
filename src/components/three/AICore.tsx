@@ -38,9 +38,9 @@ void main(){
   vec3 col = mix(uColorA, uColorB, smoothstep(-0.6, 0.8, vNoise));
   float veins = smoothstep(0.02, 0.0, abs(fract(vNoise * 3.0 + uTime * 0.15) - 0.5) - 0.46);
   vec3 dark = col * (0.04 + f * 1.55) + veins * col * 0.45;
-  vec3 light = mix(col * 0.9, vec3(1.0), 0.15 - f * 0.15);
+  vec3 light = mix(col * 1.15, vec3(1.0), 0.35 * (1.0 - f)) + veins * 0.25;
   float aDark = clamp(0.06 + f * 0.95 + veins * 0.3, 0.0, 1.0);
-  float aLight = clamp(0.2 + f * 0.8 + veins * 0.3, 0.0, 1.0);
+  float aLight = clamp(0.12 + f * 0.7 + veins * 0.25, 0.0, 0.85);
   gl_FragColor = vec4(mix(dark, light, uLight), mix(aDark, aLight, uLight));
 }
 `;

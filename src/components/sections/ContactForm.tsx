@@ -105,7 +105,7 @@ export function ContactForm() {
                       key={v}
                       aria-pressed={on}
                       onClick={() => toggle(v)}
-                      className={`rounded-full border px-4 py-2 text-small transition-all ${on ? "border-cyan bg-cyan/15 text-fg" : "border-line text-fg-soft hover:border-line-strong"}`}
+                      className={`min-h-11 rounded-full border px-4 py-2 text-small transition-all ${on ? "border-cyan bg-cyan/15 text-fg" : "border-line text-fg-soft hover:border-line-strong"}`}
                     >
                       {on ? "✓ " : "+ "}
                       {v}

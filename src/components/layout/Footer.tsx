@@ -12,7 +12,7 @@ import { Marquee } from "@/components/ui/Marquee";
 
 function FooterLink({ href, children }: { href: string; children: string }) {
   return (
-    <Link href={href} className="group inline-flex min-h-11 items-center text-body text-fg-soft hover:text-fg">
+    <Link href={href} className="group inline-flex min-h-11 min-w-11 items-center text-body text-fg-soft hover:text-fg">
       <span className="roll">
         <span>{children}</span>
         <span aria-hidden>{children}</span>

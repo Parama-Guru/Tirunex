@@ -142,7 +142,7 @@ export function ParticleField({ count }: { count: number }) {
     material.blending = dark ? THREE.AdditiveBlending : THREE.NormalBlending;
     material.needsUpdate = true;
     gsap.to(material.uniforms.uLight, { value: dark ? 0 : 1, duration: 0.8 });
-    gsap.to(material.uniforms.uOpacity, { value: dark ? 0.9 : 0.75, duration: 0.8 });
+    gsap.to(material.uniforms.uOpacity, { value: dark ? 0.9 : 0.5, duration: 0.8 });
     gsap.to(material.uniforms.uSize, { value: dark ? 5.2 : 3.6, duration: 0.8 });
   }, [theme, material]);
 
