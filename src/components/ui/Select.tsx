@@ -100,7 +100,7 @@ export function Select({
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
             data-lenis-prevent
-            className="absolute inset-x-0 top-[calc(100%+0.5rem)] z-30 max-h-64 origin-top overflow-y-auto overscroll-contain rounded-2xl border border-line-strong bg-bg-2/95 p-1.5 shadow-[0_24px_60px_-12px_rgba(0,0,0,0.55)] backdrop-blur-xl"
+            className="absolute inset-x-0 top-[calc(100%+0.5rem)] z-30 max-h-64 origin-top overflow-y-auto overscroll-contain rounded-2xl border border-line-strong bg-bg-2/95 p-1.5 shadow-[0_24px_60px_-12px_rgba(0,0,0,0.55)] backdrop-blur-xl [scrollbar-width:thin] [&::-webkit-scrollbar-button]:hidden [&::-webkit-scrollbar]:w-1.5"
           >
             {options.map((o, i) => {
               const selected = o === value;

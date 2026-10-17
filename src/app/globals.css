@@ -171,6 +171,10 @@
     background: transparent;
   }
 
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+
   ::-webkit-scrollbar-thumb {
     background: color-mix(in srgb, var(--fg) 20%, transparent);
     border: 3px solid transparent;
