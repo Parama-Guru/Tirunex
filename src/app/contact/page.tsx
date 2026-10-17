@@ -13,10 +13,10 @@ export const metadata: Metadata = {
 };
 
 const direct: { label: string; value: string; href: string; icon: IconName; external?: boolean }[] = [
-  { label: "Email", value: site.email, href: `mailto:${site.email}`, icon: "megaphone" },
-  { label: "Phone", value: site.phone, href: site.phoneHref, icon: "user" },
-  { label: "LinkedIn", value: "linkedin.com/company/tirunex", href: site.linkedin, icon: "globe", external: true },
-  { label: "Address", value: "Porur, Chennai, Tamil Nadu - 600 116, India", href: "https://maps.google.com/?q=Porur,+Chennai,+Tamil+Nadu+600116", icon: "target", external: true },
+  { label: "Email", value: site.email, href: `mailto:${site.email}`, icon: "mail" },
+  { label: "Phone", value: site.phone, href: site.phoneHref, icon: "phone" },
+  { label: "LinkedIn", value: "linkedin.com/company/tirunex", href: site.linkedin, icon: "linkedin", external: true },
+  { label: "Address", value: "Porur, Chennai, Tamil Nadu - 600 116, India", href: "https://maps.google.com/?q=Porur,+Chennai,+Tamil+Nadu+600116", icon: "pin", external: true },
 ];
 
 export default function ContactPage() {
@@ -45,8 +45,8 @@ export default function ContactPage() {
       />
 
       <Scene id="contact-form" scene={{ shape: "wave", core: 0, x: 0, zoom: 8, tint: "indigo" }} className="relative scroll-mt-24 py-16 sm:py-24">
-        <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
-          <div>
+        <Container className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-12">
+          <div className="min-w-0">
             <p data-reveal className="eyebrow">
               Tell us what you need
             </p>
@@ -84,7 +84,7 @@ export default function ContactPage() {
               </ul>
             </div>
           </div>
-          <div data-reveal="up">
+          <div data-reveal="up" className="min-w-0">
             <ContactForm />
           </div>
         </Container>

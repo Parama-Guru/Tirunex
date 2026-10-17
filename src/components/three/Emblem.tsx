@@ -208,7 +208,7 @@ function EmblemScene({ variant, tint, host }: { variant: EmblemVariant; tint: Ti
 
   return (
     <>
-      <PerspectiveCamera makeDefault position={[0, 0, 4.4]} fov={35} />
+      <PerspectiveCamera makeDefault position={[0, 0, 5.2]} fov={35} />
       <group ref={group}>
         <mesh geometry={geo} material={mat} />
         {edgeGeo && <lineSegments geometry={edgeGeo} material={edgeMat} />}

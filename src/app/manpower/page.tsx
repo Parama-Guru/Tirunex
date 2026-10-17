@@ -109,10 +109,12 @@ export default function ManpowerPage() {
               key={m}
               className="relative flex h-[clamp(13rem,30vh,18rem)] w-[min(72vw,17rem)] shrink-0 snap-center flex-col justify-between overflow-hidden rounded-panel glass-strong p-6 lg:w-[clamp(17rem,18vw,22rem)]"
             >
-              <span className="font-mono text-label text-cyan">STEP 0{i + 1} / 07</span>
-              <div className="absolute right-5 top-5 h-16 w-16 rounded-full border border-dashed border-cyan/30" />
-              <div className="absolute right-9 top-9 h-8 w-8 rounded-full bg-gradient-to-br from-green/50 to-cyan/20 blur-md" />
-              <p className="font-display text-[clamp(1.75rem,1.4rem+1.5vw,2.75rem)] font-semibold leading-none tracking-tight">{m}</p>
+              <span className="relative grid h-12 w-12 place-items-center self-end rounded-full border border-dashed border-cyan/40 font-mono text-small text-cyan">
+                <span className="absolute inset-2 rounded-full bg-gradient-to-br from-green/40 to-cyan/10 blur-sm" />
+                <span className="relative">0{i + 1}</span>
+              </span>
+              <span className="absolute left-6 top-6 font-mono text-label text-muted">STEP / 07</span>
+              <p className="font-display text-[clamp(1.75rem,1.4rem+1.2vw,2.5rem)] font-semibold leading-none tracking-tight">{m}</p>
               <div className="h-1 w-full overflow-hidden rounded-full bg-line">
                 <div className="h-full rounded-full bg-gradient-to-r from-green to-cyan" style={{ width: `${((i + 1) / model.length) * 100}%` }} />
               </div>
