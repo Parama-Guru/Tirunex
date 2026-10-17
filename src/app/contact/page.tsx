@@ -45,7 +45,7 @@ export default function ContactPage() {
       />
 
       <Scene id="contact-form" scene={{ shape: "wave", core: 0, x: 0, zoom: 8, tint: "indigo" }} className="relative scroll-mt-24 py-16 sm:py-24">
-        <Container className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-12">
+        <Container className="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-12">
           <div className="min-w-0">
             <p data-reveal className="eyebrow">
               Tell us what you need
@@ -60,7 +60,7 @@ export default function ContactPage() {
               <p data-reveal className="font-mono text-label uppercase tracking-[0.12em] text-muted">
                 Direct Inquiries:
               </p>
-              <ul data-reveal="stagger" className="mt-4 grid gap-3">
+              <ul data-reveal="stagger" className="mt-4 grid grid-cols-[minmax(0,1fr)] gap-3">
                 {direct.map((d) => (
                   <li key={d.label}>
                     <a

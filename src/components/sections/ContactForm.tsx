@@ -114,7 +114,7 @@ export function ContactForm() {
                 })}
               </div>
             </fieldset>
-            <div className="grid gap-5 sm:grid-cols-2">
+            <div className="grid grid-cols-[minmax(0,1fr)] gap-4 sm:grid-cols-2">
               <Field name="name" label="Name" required error={errors.name} autoComplete="name" />
               <Field name="company" label="Company" required error={errors.company} autoComplete="organization" />
               <Field name="email" label="Email" type="email" required error={errors.email} autoComplete="email" />
